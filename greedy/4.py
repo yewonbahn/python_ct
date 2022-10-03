@@ -13,3 +13,4 @@ while True:
     else:
         n=n-1
         cnt+=1
+
