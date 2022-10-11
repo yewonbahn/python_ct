@@ -6,10 +6,10 @@ for i in range(n):
 for i in range(m):
     lst.append(list(map(int, input().split())))
 
-# → ↗ ↑ ↖ ← ↙ ↓ ↘
+# ←, ↖, ↑, ↗, →, ↘, ↓, ↙
 
 dx = [0, -1, -1, -1, 0, 1, 1, 1]
-dy = [1, 1, 0, -1, -1, -1, 0, 1]
+dy = [-1, -1, 0, 1, 1, 1, 0, -1]
 
 # ↗  ↖  ↙  ↘
 dx2 = [-1, -1, 1, 1]
@@ -44,7 +44,6 @@ def fun(nutrients, year):
         minus=n
         while True:
             if((a>=0 and a<n )and (b>=0 and b<n )):
-
                 break
             if (a < 0):
                 a += n
@@ -91,9 +90,6 @@ def fun(nutrients, year):
 
 
     if year == m:
-        total_leaves()
-        exit()
-    if not new_nutrients:
         total_leaves()
         exit()
     else:
