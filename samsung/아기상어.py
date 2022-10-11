@@ -52,6 +52,7 @@ def find(dist):
     if min_dist==INF: # 먹을 수 있는 물고기 없는 경우
         return None
     else:
+        print(x,y,min_dist)
         return  x,y,min_dist # 먹을 물고기의 위치와 최단거리
 
 result=0 #최종답안
