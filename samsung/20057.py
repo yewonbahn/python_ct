@@ -21,6 +21,9 @@ def recount(s_x, s_y, direction):
             sand[nx][ny] += new_sand
         else:  # 범위 밖이면 ans 카운트
             ans += new_sand
+    print("위치",s_x, s_y)
+    print(ans)
+    print(sand)
 
 
 N = int(input())
@@ -52,5 +55,5 @@ for i in range(2 * N - 1):
         n_y = s_y + dy[d]
         recount(n_x, n_y, dict[d])  # y좌표, 방향
         s_x, s_y = n_x, n_y
-
+print(sand)
 print(ans)
