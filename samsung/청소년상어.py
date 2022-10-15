@@ -71,7 +71,7 @@ def get_possible_positions(array, now_x, now_y):
             # 물고기가 존재하는 경우
             if array[now_x][now_y][0] != -1:
                 positions.append((now_x, now_y))
-    print(positions)
+    print("pos",positions)
     return positions
 
 
