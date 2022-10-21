@@ -5,11 +5,9 @@ array=[]
 for i in range(n):
     array.append(list(map(int, list(input()))))
 
-print(array)
 dx=[-1,1,0,0]
 dy=[0,0,1,-1]
 visited=[[False]*m for i in range(n)]
-print(visited)
 x,y=0,0
 q=deque()
 cnt=0
@@ -19,7 +17,6 @@ while (x,y)!=(n-1,m-1):
     x,y=q.popleft()
 
     if not visited[x][y]:
-        print(x, y)
         visited[x][y] = True
         for i in range(4):
             nx=x+dx[i]
@@ -28,6 +25,7 @@ while (x,y)!=(n-1,m-1):
                 cnt-=1
                 continue
             else:
-                cnt+=1
+                array[nx][ny]=array[x][y]+1
                 q.append((nx,ny))
-print(cnt)
+
+print(array[-1][-1])
