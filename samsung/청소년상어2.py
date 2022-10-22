@@ -87,34 +87,7 @@ def position(array,sx,sy):
 
 result=0
 def dfs(array,sx,sy,total):
-    # array = copy.deepcopy(array)  # 리스트를 통째로 복사
-    # print("전",total)
-    # print_array()
-    # total += array[sx][sy][0]  # 현재 위치의 물고기 먹기
-    # print("후",total)
-    # array[sx][sy][0] = 0  # 물고기를 먹었으므로 번호 값을 -1로 변환
-    # global result
-    #
-    #
-    # move_fishes(array, sx,sy)  # 전체 물고기 이동 시키기
-    #
-    # print("이동후",array)
-    # # 이제 다시 상어가 이동할 차례이므로, 이동 가능한 위치 찾기
-    # positions=position(array,sx,sy)
-    # print(positions)
-    #
-    # if len(positions) == 0:
-    #     result = max(result, total)  # 최댓값 저장
-    #
-    #     return result
-    # print("total",total)
-    #     # 모든 이동할 수 있는 위치로 재귀적으로 수행
-    # for next_x, next_y in positions:
-    #     print("next_x,next_y",next_x,next_y)
-    #     dfs(array, next_x, next_y, total)
-    #     print("마지막,",array)
-    #
-    # print("반복", now_x, now_y, total)
+
     global result
     array = copy.deepcopy(array)  # 리스트를 통째로 복사
 

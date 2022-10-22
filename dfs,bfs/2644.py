@@ -24,7 +24,6 @@ while q:
             if array[i][1]==x and not visited[array[i][0]]:
                 visited[x]=True
                 if (array[i][0] == a):
-                    visited[a] = True
                     set=True
                 lst[array[i][0]] = lst[x] + 1
                 q.append(array[i][0])
@@ -32,7 +31,6 @@ while q:
             if array[i][0]==x and not visited[array[i][1]]:
                 visited[x]=True
                 if (array[i][1] == a):
-                    visited[a] = True
                     set=True
                 lst[array[i][1]]=lst[x]+1
                 q.append(array[i][1])
