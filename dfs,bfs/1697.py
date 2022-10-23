@@ -19,7 +19,6 @@ while True:
         if i==2:
             nx=x*2
 
-
         else:
             nx=x+dx[i]
 
