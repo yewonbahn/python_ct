@@ -6,7 +6,6 @@ for i in range(n):
     new=list(map(int,input().split()))
     h=max(max(new),h)
     array[i]=new
-print('h',h)
 dx=[0,0,1,-1]
 dy=[1,-1,0,0]
 visited=[[0]*n for _ in range(n)]
