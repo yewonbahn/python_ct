@@ -1,59 +1,33 @@
-from collections import deque
+import itertools
+
+
+def is_movable(cur_x, cur_y, next_x, next_y, rectangles):
+    x, y = (cur_x + next_x) / 2, (cur_y + next_y) / 2
+    print(x,y)
+    is_on_any_border = any(
+        (x in (x1, x2) and y1 <= y <= y2) or (y in (y1, y2) and x1 <= x <= x2)
+        for x1, y1, x2, y2 in rectangles)
+    is_inside_any_rect = any(
+        x1 < x < x2 and y1 < y < y2 for x1, y1, x2, y2 in rectangles)
+    return is_on_any_border and not is_inside_any_rect
 
 
 def solution(rectangle, characterX, characterY, itemX, itemY):
-    q = deque()
-    q.append((characterX, characterY,0))
-    visited=[[0]*50 for i in range(50)]
-    arr=[]
+    cur_pos = (characterX, chiaracterY)
+    prev_pos = None
+    print(itertools.count())
+    for dist in itertools.count():
+        if cur_pos == (characterX, characterY) and prev_pos:
+            perimeter = dist
+            break
+        elif cur_pos == (itemX, itemY):
+            dist_to_item = dist
+        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            next_pos = (cur_pos[0] + dx, cur_pos[1] + dy)
+            if next_pos != prev_pos and is_movable(*cur_pos, *next_pos,
+                                                   rectangle):
+                prev_pos, cur_pos = cur_pos, next_pos
+                break
+    return min(dist_to_item, perimeter - dist_to_item)
 
-    while q:
-        x, y, z= q.popleft()
-        if [x,y]==[itemX,itemY]:
-            arr.append(z)
-        visited[x][y]=1
-
-        for i in range(len(rectangle)):
-            # 1 1 7 4
-            rx = rectangle[i][0]
-            ry = rectangle[i][1]
-            rx2 = rectangle[i][2]
-            ry2 = rectangle[i][3]
-            if (x == rx and y == ry):
-                if not visited[rx][ry2]:
-                    q.append((rx, ry2,z+ry2))
-                if not visited[rx2][ry]:
-                    q.append((rx2, ry,z+rx2))
-            if (x == rx2 and y == ry2):
-                if not visited[rx][ry2]:
-                    q.append((rx, ry2,z+rx2))
-                if not visited[rx2][ry]:
-                    q.append((rx2, ry,z+ry2))
-            if (x == rx and y == ry2):
-                if not visited[rx][ry]:
-                    q.append((rx, ry,z+ry2))
-                if not visited[rx][ry2]:
-                    q.append((rx, ry2,z+rx2))
-            if (x == rx2 and y == ry):
-                if not visited[rx][ry]:
-                    q.append((rx, ry,z+rx2))
-                if not visited[rx][ry2]:
-                    q.append((rx, ry2,z+ry2))
-            if (y != ry or y != ry2):
-                if not visited[x][ry]:
-                    q.append((x, ry,z+abs(ry-y)))
-                if not visited[x][ry2]:
-                    q.append((x, ry2,z+abs(ry2-y)))
-            if (x != rx or x != rx2):
-
-                if not visited[rx][y]:
-                    q.append((rx, y,z+abs(rx-x)))
-                if not visited[rx2][y]:
-                    q.append((rx2, y,z+abs(rx2-x)))
-        print(q)
-
-    answer = 0
-    print(arr)
-    return answer
-
-solution([[1,1,7,4],[3,2,5,5],[4,3,6,9],[2,6,8,8]],1,3,7,8)
+print(solution([[1,1,7,4],[3,2,5,5],[4,3,6,9],[2,6,8,8]],1,3,7,8))
