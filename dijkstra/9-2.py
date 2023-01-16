@@ -12,6 +12,7 @@ distance = [INF] *(n+1)
 for _ in range(m):
     a,b,c=map(int,input().split())
     graph[a].append((b,c))
+print("graph",graph)
 def dijkstra(start):
     q=[]
     heapq.heappush(q,(0,start))
@@ -20,7 +21,6 @@ def dijkstra(start):
         print(q)
         dist,now= heapq.heappop(q)
         if distance[now]<dist:
-            print("이미 처리된적이 있는 노드")
             print(distance[now],dist)
             continue
         #현재 노드와 연결된 다른 인접 노드 화긴
