@@ -1,38 +1,26 @@
-from collections import deque
 def solution(priorities, location):
-    answer=0
-    q=deque()
+    lst = []
     for i in range(len(priorities)):
-        q.append((priorities[i],i))
-    print(q)
-    a=priorities[0]
-    while q:
-        answer2 = False
-        check=False
-        answer+=1
-        print(answer)
-        for i in q:
-            if a<i[0]:
-                a,b=q.popleft()
-                print(q)
-                q.remove((i[0],i[1]))
-                print(q)
-                if i[1]==location:
-                    answer2=True
-                    break
-                q.append((a,b))
-                print(q)
-                check=True
+        lst.append([i, priorities[i]])
+    cnt=1
+    while True:
+        a, b = lst.pop(0)
+        max_v=b
+        for i in range(len(lst)):
+            if max_v < lst[i][1]:
+                max_idx,max_v=i,lst[i][1]
+        if b<max_v:
+            if lst[max_idx][0] == location:
                 break
-        if answer2==True:
-            break
-        if check == True:
-            continue
-        c,d=q.popleft()
-        print(q)
-        if d==location:
-            answer-=1
-            break
-    return answer
+            del lst[max_idx]
+            lst.append([a, b])
+            for j in range(max_idx):
+                c,d=lst.pop(0)
+                lst.append([c,d])
+        else:
+            if a==location:
+                break
+        cnt+=1
+    return cnt
 
-solution([2, 1, 3, 2],2)
+solution([1, 1, 9, 1, 1, 1], 0)
