@@ -8,6 +8,7 @@ check_r=[0]*30
 
 def backtracking(cnt):
     global answer
+    print("cnt",cnt)
     if cnt==n: #탈출 조건
         answer+=1
         return;
