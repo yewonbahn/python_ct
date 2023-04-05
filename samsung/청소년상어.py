@@ -2,7 +2,7 @@ import copy
 
 # 4 X 4 크기 격자에 존재하는 각 물고기의 번호(없으면 -1)와 방향 값을 담는 테이블
 array = [[None] * 4 for _ in range(4)]
-
+answer=[]
 for i in range(4):
     data = list(map(int, input().split()))
     # 매 줄마다 4마리의 물고기를 하나씩 확인하며
@@ -38,7 +38,6 @@ def find_fish(array, index):
 # 모든 물고기를 회전 및 이동시키는 함수
 def move_all_fishes(array, now_x, now_y):
     # 1번부터 16번까지의 물고기를 차례대로 (낮은 번호부터) 확인
-    print(array)
     for i in range(1, 17):
         # 해당 물고기의 위치를 찾기
         position = find_fish(array, i)
@@ -63,6 +62,7 @@ def get_possible_positions(array, now_x, now_y):
     positions = []
     direction = array[now_x][now_y][1]
     # 현재의 방향으로 쭉 이동하기
+    print("tkddjdnlcl",now_x,now_y)
     for i in range(4):
         now_x += dx[direction]
         now_y += dy[direction]
@@ -71,13 +71,11 @@ def get_possible_positions(array, now_x, now_y):
             # 물고기가 존재하는 경우
             if array[now_x][now_y][0] != -1:
                 positions.append((now_x, now_y))
-    print("pos",positions)
     return positions
 
 
 # 모든 경우를 탐색하기 위한 DFS 함수
 def dfs(array, now_x, now_y, total):
-    print("반복",now_x,now_y,total)
     global result
     array = copy.deepcopy(array)  # 리스트를 통째로 복사
 
@@ -85,13 +83,15 @@ def dfs(array, now_x, now_y, total):
     array[now_x][now_y][0] = -1  # 물고기를 먹었으므로 번호 값을 -1로 변환
 
     move_all_fishes(array, now_x, now_y)  # 전체 물고기 이동 시키기
+    print(array)
 
     # 이제 다시 상어가 이동할 차례이므로, 이동 가능한 위치 찾기
     positions = get_possible_positions(array, now_x, now_y)
+    print(positions)
     # 이동할 수 있는 위치가 하나도 없다면 종료
     if len(positions) == 0:
         print("dfs 종료 후 total",total)
-        result = max(result, total)  # 최댓값 저장
+        answer.append(total)
         return
         # 모든 이동할 수 있는 위치로 재귀적으로 수행
     for next_x, next_y in positions:
@@ -100,4 +100,4 @@ def dfs(array, now_x, now_y, total):
 
 # 청소년 상어의 시작 위치(0, 0)에서부터 재귀적으로 모든 경우 탐색
 dfs(array, 0, 0, 0)
-print(result)
+print(answer)
