@@ -6,6 +6,8 @@ for i in range(n):
 sx,sy=0,0
 size=2
 for i in range(n):
+
+
     for j in range(n):
         if array[i][j]==9:
             sx,sy=i,j
@@ -55,6 +57,7 @@ ate=0
 while True:
     print("sx,sy",sx,sy)
     dist=bfs()
+
     value=find(dist)
     if value == None:
         break
