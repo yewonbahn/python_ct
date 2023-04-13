@@ -22,6 +22,7 @@ def is_out_range(x, y):
 
 # 1단계 : 인접한 네 개의 칸 중 나무가 있는 칸의 수만큼 나무가 성장합니다.
 def step_one():
+    print("1")
     dxs, dys = [-1, 0, 1, 0], [0, -1, 0, 1]
 
     for i in range(1, n + 1):
@@ -39,10 +40,13 @@ def step_one():
                     cnt += 1
 
             tree[i][j] += cnt
+    for i in tree:
+        print(i)
 
 
 # 2단계 : 기존에 있었던 나무들은 아무것도 없는 칸에 번식을 진행합니다.
 def step_two():
+    print("***")
     dxs, dys = [-1, 0, 1, 0], [0, -1, 0, 1]
 
     # 모든 나무에서 동시에 일어나는 것을 구현하기 위해 하나의 배열을 더 이용합니다.
@@ -81,6 +85,8 @@ def step_two():
     for i in range(1, n + 1):
         for j in range(1, n + 1):
             tree[i][j] += add_tree[i][j]
+    for i in tree:
+        print(i)
 
 
 # 3단계 : 가장 많이 박멸되는 칸에 제초제를 뿌립니다.
@@ -112,7 +118,7 @@ def step_three():
                 max_del = cnt
                 max_x = i
                 max_y = j
-
+    print(max_del,max_x,max_y)
     ans += max_del
 
     # 찾은 칸에 제초제를 뿌립니다.
@@ -145,6 +151,7 @@ def delete_herb():
 
 
 for _ in range(m):
+    print(_,"년")
     # 1단계 : 인접한 네 개의 칸 중 나무가 있는 칸의 수만큼 나무가 성장합니다.
     step_one()
 
@@ -156,5 +163,8 @@ for _ in range(m):
 
     # 3단계 : 가장 많이 박멸되는 칸에 제초제를 뿌립니다.
     step_three()
+    print("제초시작")
+    for i in tree:
+        print(i)
 
 print(ans)

@@ -75,9 +75,5 @@ def dfs(fishes,x,y,total):
     for lst in shark_lst:
         dfs(array,lst[0],lst[1],total)
 
-
-
-
-
 dfs(fishes,0,0,0)
 print(max(answer))
