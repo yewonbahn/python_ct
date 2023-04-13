@@ -113,6 +113,7 @@ def step_three():
                     if tree[nx][ny] <= 0:
                         break
                     cnt += tree[nx][ny]
+            print(i,j,"에서 지워지는 총 나무",cnt)
 
             if max_del < cnt:
                 max_del = cnt
@@ -120,7 +121,7 @@ def step_three():
                 max_y = j
     print(max_del,max_x,max_y)
     ans += max_del
-
+    print(max_del,max_x,max_y)
     # 찾은 칸에 제초제를 뿌립니다.
     if tree[max_x][max_y] > 0:
         tree[max_x][max_y] = 0
@@ -137,7 +138,7 @@ def step_three():
                 if tree[nx][ny] == 0:
                     herb[nx][ny] = c
                     break
-
+                print(nx,ny,"제초제뿌리자")
                 tree[nx][ny] = 0
                 herb[nx][ny] = c
 
@@ -153,17 +154,22 @@ def delete_herb():
 for _ in range(m):
     print(_,"년")
     # 1단계 : 인접한 네 개의 칸 중 나무가 있는 칸의 수만큼 나무가 성장합니다.
+    print(_+1,"year")
     step_one()
-
+    print("증가")
+    for i in tree:
+        print(i)
     # 2단계 : 기존에 있었던 나무들은 아무것도 없는 칸에 번식을 진행합니다.
     step_two()
+    print("번식")
+    for i in tree:
+        print(i)
 
     # 제초제의 기간을 1년 감소시킵니다.
     delete_herb()
 
     # 3단계 : 가장 많이 박멸되는 칸에 제초제를 뿌립니다.
     step_three()
-    print("제초시작")
     for i in tree:
         print(i)
 
